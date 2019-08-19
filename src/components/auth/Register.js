@@ -4,14 +4,14 @@ import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { colors, helperStyles } from '../../assets/styles/baseStyle';
-import LoginForm from './forms/LoginForm';
+import RegisterForm from './forms/RegisterForm';
 
 const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.white,
   },
   header_container: {
-    marginBottom: 60,
+    marginBottom: 40,
   },
   header_title: {
     fontSize: 24,
@@ -22,17 +22,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 20,
   },
-  login: {
+  register: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
 });
 
-const Login = ({ navigation }) => (
-  <View style={styles.login}>
+const Register = ({ navigation }) => (
+  <View style={styles.register}>
     <View style={helperStyles.m_2_h}>
-      <LoginForm navigation={navigation} />
+      <RegisterForm navigation={navigation} />
     </View>
     <View>
       <Image source={require('../../assets/img/pet.png')} />
@@ -40,7 +40,7 @@ const Login = ({ navigation }) => (
   </View>
 );
 
-Login.navigationOptions = {
+Register.navigationOptions = {
   header: props => (
     <SafeAreaView style={styles.header}>
       <View style={styles.header_container}>
@@ -51,15 +51,14 @@ Login.navigationOptions = {
           size={20}
           onPress={() => props.navigation.goBack(null)}
         />
-        <Text style={styles.header_title}>Bienvenido</Text>
-        <Text style={styles.header_subtitle}>Regístrate para ingresar</Text>
+        <Text style={styles.header_title}>Regístrate</Text>
       </View>
     </SafeAreaView>
   ),
 };
 
-Login.propTypes = {
+Register.propTypes = {
   navigation: PropTypes.instanceOf(Object).isRequired,
 };
 
-export default Login;
+export default Register;

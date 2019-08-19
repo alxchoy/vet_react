@@ -6,12 +6,18 @@
  * @flow
  */
 
-import React from 'react';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import Home from './components/Home';
+import HomeScreen from './components/Home';
+import LoginScreen from './components/auth/Login';
+import RecoveryScreen from './components/auth/PasswordRecovery';
+import RegisterScreen from './components/auth/Register';
 
-const App = () => {
-  return <Home />;
-};
+const AppNavigator = createStackNavigator(
+  { Home: HomeScreen, Login: LoginScreen, Recovery: RecoveryScreen, Register: RegisterScreen },
+  {
+    initialRouteName: 'Home',
+  }
+);
 
-export default App;
+export default createAppContainer(AppNavigator);

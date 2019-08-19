@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: 'white',
     borderRadius: 30,
-    borderWidth: 2,
+    borderWidth: 1,
     paddingVertical: 15,
   },
   text: {
@@ -22,8 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Button = props => {
-  const { color, onPress, text, type } = props;
+const VetButton = ({ color, text, type, onPress }) => {
   const styleBtn = styles[type];
 
   return (
@@ -36,15 +35,15 @@ const Button = props => {
   );
 };
 
-Button.defaultProps = {
+VetButton.defaultProps = {
   color: 'transparent',
 };
 
-Button.propTypes = {
+VetButton.propTypes = {
   color: PropTypes.string,
   onPress: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['block', 'outline']).isRequired,
 };
 
-export default Button;
+export default VetButton;
