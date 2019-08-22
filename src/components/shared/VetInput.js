@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     borderColor: colors.gray,
     borderWidth: 1,
     borderRadius: 20,
-    padding: 13,
+    padding: 15,
     marginVertical: 10,
   },
   error: {
@@ -40,7 +40,7 @@ VetInput.defaultProps = {
 
 VetInput.propTypes = {
   change: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.instanceOf(Object).isRequired,
   placeholder: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
   secureInput: PropTypes.bool,

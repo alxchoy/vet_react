@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 const RecoveryForm = () => (
   <Formik
     initialValues={{ userName: '', userEmail: '' }}
-    validationSchema={validators.LoginFormValidation}
+    validationSchema={validators.RecoveryFormValidation}
     onSubmit={values => {
       console.log(values);
     }}
@@ -55,7 +55,6 @@ const RecoveryForm = () => (
           errors={errors}
           placeholder="email"
           property="userEmail"
-          secureInput
           value={values.userEmail}
         />
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>

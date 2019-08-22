@@ -39,6 +39,7 @@ const LoginForm = ({ navigation }) => (
     validationSchema={validators.LoginFormValidation}
     onSubmit={values => {
       console.log(values);
+      navigation.navigate('Recovery');
     }}
   >
     {({ values, handleChange, handleSubmit, errors }) => (

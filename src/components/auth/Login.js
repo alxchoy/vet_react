@@ -1,26 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { colors, helperStyles } from '../../assets/styles/baseStyle';
 import LoginForm from './forms/LoginForm';
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: colors.white,
-  },
-  header_container: {
-    marginBottom: 60,
-  },
   header_title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginLeft: 20,
   },
   header_subtitle: {
-    fontSize: 16,
-    marginLeft: 20,
+    fontSize: 18,
   },
   login: {
     flex: 1,
@@ -31,7 +23,11 @@ const styles = StyleSheet.create({
 
 const Login = ({ navigation }) => (
   <View style={styles.login}>
-    <View style={helperStyles.m_2_h}>
+    <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
+      <Text style={styles.header_title}>Bienvenido</Text>
+      <Text style={styles.header_subtitle}>Regístrate para ingresar</Text>
+    </View>
+    <View style={helperStyles.mh_2}>
       <LoginForm navigation={navigation} />
     </View>
     <View>
@@ -40,22 +36,23 @@ const Login = ({ navigation }) => (
   </View>
 );
 
-Login.navigationOptions = {
-  header: props => (
-    <SafeAreaView style={styles.header}>
-      <View style={styles.header_container}>
+Login.navigationOptions = ({ navigation }) => {
+  return {
+    headerLeft: (
+      <View>
         <Icon.Button
           backgroundColor={colors.white}
           color="gray"
           name="chevron-left"
           size={20}
-          onPress={() => props.navigation.goBack(null)}
+          onPress={() => navigation.goBack(null)}
         />
-        <Text style={styles.header_title}>Bienvenido</Text>
-        <Text style={styles.header_subtitle}>Regístrate para ingresar</Text>
       </View>
-    </SafeAreaView>
-  ),
+    ),
+    headerStyle: {
+      borderBottomColor: 'transparent',
+    },
+  };
 };
 
 Login.propTypes = {

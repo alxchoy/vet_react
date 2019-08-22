@@ -10,9 +10,9 @@ export const colors = {
 export const fonts = {};
 
 export const helperStyles = StyleSheet.create({
-  m_2_h: { marginHorizontal: 20 },
-  m_2_b: { marginBottom: 20 },
-  m_2_t: { marginTop: 20 },
+  mh_2: { marginHorizontal: 20 },
+  mb_2: { marginBottom: 20 },
+  mt_2: { marginTop: 20 },
   align_self_end: { alignSelf: 'flex-end' },
   align_self_start: { alignSelf: 'flex-start' },
 });

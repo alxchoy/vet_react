@@ -36,7 +36,7 @@ const RegisterForm = ({ navigation }) => (
       userPassword: '',
       userPasswordConfirm: '',
     }}
-    validationSchema={validators.LoginFormValidation}
+    validationSchema={validators.RegisterFormValidation}
     onSubmit={values => {
       console.log(values);
     }}

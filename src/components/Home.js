@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { Animated, Easing, ImageBackground, StyleSheet, View } from 'react-native';
 
 import { colors } from '../assets/styles/baseStyle';
 import VetButton from './shared/VetButton';
@@ -47,6 +47,28 @@ const Home = props => {
 
 Home.navigationOptions = {
   header: null,
+  headerTransparent: true,
+  transitionConfig: () => ({
+    transitionSpec: {
+      duration: 750,
+      easing: Easing.out(Easing.poly(4)),
+      timing: Animated.timing,
+      useNativeDriver: true,
+    },
+    screenInterpolator: sceneProps => {
+      const { layout, position, scene } = sceneProps;
+
+      const thisSceneIndex = scene.index;
+      const width = layout.initWidth;
+
+      const translateX = position.interpolate({
+        inputRange: [thisSceneIndex - 1, thisSceneIndex],
+        outputRange: [width, 0],
+      });
+
+      return { transform: [{ translateX }] };
+    },
+  }),
 };
 
 Home.propTypes = {
