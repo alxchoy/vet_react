@@ -6,7 +6,10 @@
  * @flow
  */
 
+import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+
+import { AppContextProvider } from './context/AppContext';
 
 import HomeScreen from './components/Home';
 import LoginScreen from './components/auth/Login';
@@ -20,4 +23,12 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-export default createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppNavigator);
+
+const App = () => (
+  <AppContextProvider>
+    <AppContainer />
+  </AppContextProvider>
+);
+
+export default App;

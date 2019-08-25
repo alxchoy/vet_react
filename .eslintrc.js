@@ -8,6 +8,7 @@ module.exports = {
   ],
   rules: {
     'global-require': 'off',
+    'import/prefer-default-export': 'off',
     'react/jsx-filename-extension': [
       1,
       {

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { colors, helperStyles } from '../../assets/styles/baseStyle';
@@ -16,21 +16,42 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
+  img_container: {
+    zIndex: -1,
+  },
+  scrollView: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
 });
 
-const Register = ({ navigation }) => (
-  <View style={styles.register}>
-    <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
-      <Text style={styles.header_title}>Regístrate</Text>
-    </View>
-    <View style={helperStyles.m_2_h}>
-      <RegisterForm navigation={navigation} />
-    </View>
-    <View>
-      <Image source={require('../../assets/img/pet.png')} />
-    </View>
-  </View>
-);
+const Register = ({ navigation }) => {
+  const [enableScroll, setEnableScroll] = useState(false);
+  const { height, width } = Dimensions.get('window');
+
+  function onContentSizeChange(contentWidth, contentHeight) {
+    setEnableScroll(contentHeight > height);
+  }
+
+  return (
+    <ScrollView onContentSizeChange={onContentSizeChange} scrollEnabled={enableScroll}>
+      <View style={styles.register}>
+        <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
+          <Text style={styles.header_title}>Regístrate</Text>
+        </View>
+        <View style={helperStyles.mh_2}>
+          <RegisterForm navigation={navigation} />
+        </View>
+        <View style={styles.img_container}>
+          <Image
+            source={require('../../assets/img/pet.png')}
+            style={{ width, height: height / 3.6 }}
+          />
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
 
 Register.navigationOptions = ({ navigation }) => {
   return {

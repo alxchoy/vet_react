@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { colors, helperStyles } from '../../assets/styles/baseStyle';
@@ -16,25 +16,34 @@ const styles = StyleSheet.create({
   },
   login: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'space-between',
+  },
+  img_container: {
+    zIndex: -1,
   },
 });
 
-const Login = ({ navigation }) => (
-  <View style={styles.login}>
-    <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
-      <Text style={styles.header_title}>Bienvenido</Text>
-      <Text style={styles.header_subtitle}>Regístrate para ingresar</Text>
+const Login = ({ navigation }) => {
+  const { height, width } = Dimensions.get('window');
+
+  return (
+    <View style={styles.login}>
+      <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
+        <Text style={styles.header_title}>Bienvenido</Text>
+        <Text style={styles.header_subtitle}>Regístrate para ingresar</Text>
+      </View>
+      <View style={helperStyles.mh_2}>
+        <LoginForm navigation={navigation} />
+      </View>
+      <View style={styles.img_container}>
+        <Image
+          source={require('../../assets/img/pet.png')}
+          style={{ height: height / 3.6, width }}
+        />
+      </View>
     </View>
-    <View style={helperStyles.mh_2}>
-      <LoginForm navigation={navigation} />
-    </View>
-    <View>
-      <Image source={require('../../assets/img/pet.png')} />
-    </View>
-  </View>
-);
+  );
+};
 
 Login.navigationOptions = ({ navigation }) => {
   return {

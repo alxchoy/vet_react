@@ -2,18 +2,6 @@ import axios from 'axios';
 
 import constants from '../../utils/constants';
 
-const get = url =>
-  axios.get(url).catch(err => {
-    console.error(err.response);
-    console.error(err.request);
-  });
-
-const post = (url, data) =>
-  axios.post(`${constants.urlBase}/${url}`, data).catch(err => {
-    console.error(err.response);
-    console.error(err.request);
-  });
-
 // interceptors
 axios.interceptors.request.use(
   config => {
@@ -24,6 +12,20 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+const get = url =>
+  axios.get(url).catch(err => {
+    console.error(err.response);
+    console.error(err.request);
+  });
+
+const post = (url, data) =>
+  axios.post(`${constants.urlBase}/${url}`, data).catch(err => {
+    console.error(err.response);
+    console.error(err.request);
+
+    return err;
+  });
 
 const api = {
   get,

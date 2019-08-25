@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { AppContext } from '../../../context/AppContext';
 
 import authService from '../../../providers/services/authService';
 import storageApi from '../../../providers/storage';
@@ -38,11 +40,16 @@ const styles = StyleSheet.create({
 });
 
 const LoginForm = ({ navigation }) => {
+  const { appDispatch } = useContext(AppContext);
+
   function handleLoginService(response) {
     console.log(response);
+    appDispatch({ type: 'UPDATE_LOADDING', payload: false });
     if (response.status === constants.successCode) {
       storageApi.storeData('@vet_token', response.data.access_token);
       // navigation.navigate('Recovery');
+    } else {
+      console.log('Error de contraseña');
     }
   }
 
@@ -50,7 +57,10 @@ const LoginForm = ({ navigation }) => {
     <Formik
       initialValues={{ userName: '', userPassword: '' }}
       validationSchema={validators.LoginFormValidation}
-      onSubmit={values => authService.login(values, handleLoginService)}
+      onSubmit={values => {
+        appDispatch({ type: 'UPDATE_LOADDING', payload: true });
+        authService.login(values, handleLoginService);
+      }}
     >
       {({ values, handleChange, handleSubmit, errors }) => (
         <View>

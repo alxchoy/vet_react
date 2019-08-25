@@ -72,7 +72,7 @@ Home.navigationOptions = {
 };
 
 Home.propTypes = {
-  navigation: PropTypes.any.isRequired,
+  navigation: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Home;

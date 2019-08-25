@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { colors, helperStyles } from '../../assets/styles/baseStyle';
@@ -15,21 +15,31 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
+  img_container: {
+    zIndex: -1,
+  },
 });
 
-const PasswordRecovery = () => (
-  <View style={styles.recover}>
-    <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
-      <Text style={styles.header_title}>Recuperar contraseña</Text>
+const PasswordRecovery = () => {
+  const { height, width } = Dimensions.get('window');
+
+  return (
+    <View style={styles.recover}>
+      <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
+        <Text style={styles.header_title}>Recuperar contraseña</Text>
+      </View>
+      <View style={helperStyles.mh_2}>
+        <RecoveryForm />
+      </View>
+      <View style={styles.img_container}>
+        <Image
+          source={require('../../assets/img/pet.png')}
+          style={{ height: height / 3.6, width }}
+        />
+      </View>
     </View>
-    <View style={helperStyles.mh_2}>
-      <RecoveryForm />
-    </View>
-    <View>
-      <Image source={require('../../assets/img/pet.png')} />
-    </View>
-  </View>
-);
+  );
+};
 
 PasswordRecovery.navigationOptions = ({ navigation }) => {
   return {

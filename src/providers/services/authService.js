@@ -9,10 +9,7 @@ const login = (userData, handleResponse) => {
   data.append('grant_type', 'password');
   data.append('rolId', constants.rolId);
 
-  api
-    .post('token', data)
-    .then(handleResponse)
-    .catch(err => console.log(err));
+  api.post('token', data).then(handleResponse);
 };
 
 export default {
