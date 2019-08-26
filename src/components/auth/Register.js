@@ -36,7 +36,7 @@ const Register = ({ navigation }) => {
   return (
     <ScrollView onContentSizeChange={onContentSizeChange} scrollEnabled={enableScroll}>
       <View style={styles.register}>
-        <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
+        <View style={[helperStyles.mh_2, helperStyles.mt_1]}>
           <Text style={styles.header_title}>Regístrate</Text>
         </View>
         <View style={helperStyles.mh_2}>

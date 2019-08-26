@@ -25,7 +25,7 @@ const PasswordRecovery = () => {
 
   return (
     <View style={styles.recover}>
-      <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
+      <View style={[helperStyles.mh_2, helperStyles.mt_1]}>
         <Text style={styles.header_title}>Recuperar contraseña</Text>
       </View>
       <View style={helperStyles.mh_2}>

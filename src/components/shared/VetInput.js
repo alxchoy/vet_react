@@ -21,16 +21,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const VetInput = ({ change, errors, placeholder, property, secureInput, value }) => (
+const VetInput = ({ change, errors, placeholder, property, secureInput, touched, value }) => (
   <>
     <TextInput
       onChangeText={change}
       placeholder={placeholder}
       secureTextEntry={secureInput}
-      style={[styles.base, errors[property] && styles.error]}
+      style={[styles.base, errors[property] && touched[property] && styles.error]}
       value={value}
     />
-    {errors[property] && <Text style={styles.textError}>{errors[property]}</Text>}
+    {errors[property] && touched[property] && (
+      <Text style={styles.textError}>{errors[property]}</Text>
+    )}
   </>
 );
 
@@ -44,6 +46,7 @@ VetInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
   secureInput: PropTypes.bool,
+  touched: PropTypes.instanceOf(Object).isRequired,
   value: PropTypes.string.isRequired,
 };
 

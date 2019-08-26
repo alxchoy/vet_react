@@ -15,7 +15,7 @@ const RecoveryFormValidation = Yup.object().shape({
 const RegisterFormValidation = Yup.object().shape({
   name: Yup.string().required('Campo requerido'),
   userName: Yup.string().required('Campo requerido'),
-  userEmail: Yup.string()
+  clientEmail: Yup.string()
     .email('Email inválido')
     .required('Campo Requerido'),
   userPassword: Yup.string().required('Campo requerido'),

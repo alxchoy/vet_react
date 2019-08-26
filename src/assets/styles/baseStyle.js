@@ -13,6 +13,7 @@ export const helperStyles = StyleSheet.create({
   mh_2: { marginHorizontal: 20 },
   mb_2: { marginBottom: 20 },
   mt_2: { marginTop: 20 },
+  mt_1: { marginTop: 10 },
   align_self_end: { alignSelf: 'flex-end' },
   align_self_start: { alignSelf: 'flex-start' },
 });

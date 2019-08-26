@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -42,14 +42,20 @@ const styles = StyleSheet.create({
 const LoginForm = ({ navigation }) => {
   const { appDispatch } = useContext(AppContext);
 
-  function handleLoginService(response) {
-    console.log(response);
+  async function handleLoginService(response) {
     appDispatch({ type: 'UPDATE_LOADDING', payload: false });
     if (response.status === constants.successCode) {
-      storageApi.storeData('@vet_token', response.data.access_token);
+      await storageApi.storeData('@vet_token', response.data.access_token);
+      authService.getId(res => storageApi.storeData('@vet_clientId', res.data.idLogIn));
+
       // navigation.navigate('Recovery');
     } else {
-      console.log('Error de contraseña');
+      Alert.alert('', response.data.error, [
+        {
+          text: 'OK',
+          onPress: () => {},
+        },
+      ]);
     }
   }
 
@@ -62,10 +68,11 @@ const LoginForm = ({ navigation }) => {
         authService.login(values, handleLoginService);
       }}
     >
-      {({ values, handleChange, handleSubmit, errors }) => (
+      {({ values, handleChange, handleSubmit, errors, touched }) => (
         <View>
           <VetInput
             change={handleChange('userName')}
+            touched={touched}
             errors={errors}
             placeholder="usuario"
             property="userName"
@@ -73,6 +80,7 @@ const LoginForm = ({ navigation }) => {
           />
           <VetInput
             change={handleChange('userPassword')}
+            touched={touched}
             errors={errors}
             placeholder="contraseña"
             property="userPassword"

@@ -41,13 +41,14 @@ const RecoveryForm = () => (
       console.log(values);
     }}
   >
-    {({ values, handleChange, handleSubmit, errors }) => (
+    {({ values, handleChange, handleSubmit, errors, touched }) => (
       <View>
         <VetInput
           change={handleChange('userName')}
           errors={errors}
           placeholder="usuario"
           property="userName"
+          touched={touched}
           value={values.userName}
         />
         <VetInput
@@ -55,6 +56,7 @@ const RecoveryForm = () => (
           errors={errors}
           placeholder="email"
           property="userEmail"
+          touched={touched}
           value={values.userEmail}
         />
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>

@@ -28,7 +28,7 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.login}>
-      <View style={[helperStyles.mh_2, helperStyles.mt_2]}>
+      <View style={[helperStyles.mh_2, helperStyles.mt_1]}>
         <Text style={styles.header_title}>Bienvenido</Text>
         <Text style={styles.header_subtitle}>Regístrate para ingresar</Text>
       </View>

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Easing, ImageBackground, StyleSheet, View } from 'react-native';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { colors } from '../assets/styles/baseStyle';
 import VetButton from './shared/VetButton';
 
@@ -22,6 +24,8 @@ const styles = StyleSheet.create({
 });
 
 const Home = props => {
+  AsyncStorage.clear();
+
   return (
     <ImageBackground source={require('../assets/img/background.png')} style={styles.backgroundImg}>
       <View style={styles.container}>

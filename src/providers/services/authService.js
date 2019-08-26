@@ -12,6 +12,20 @@ const login = (userData, handleResponse) => {
   api.post('token', data).then(handleResponse);
 };
 
+const getId = handleResponse => {
+  api
+    .get('api/token/claims')
+    .then(res => res.status === constants.successCode && handleResponse(res));
+};
+
+const createClient = (userData, handleResponse) => {
+  api
+    .post('api/client/createUser', userData)
+    .then(res => res.status === constants.successCode && handleResponse(res));
+};
+
 export default {
   login,
+  getId,
+  createClient,
 };

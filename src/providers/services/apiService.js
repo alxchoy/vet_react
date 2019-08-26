@@ -1,11 +1,17 @@
 import axios from 'axios';
 
 import constants from '../../utils/constants';
+import storageApi from '../storage';
 
 // interceptors
 axios.interceptors.request.use(
-  config => {
-    console.log('interceptor!!!');
+  async config => {
+    const token = await storageApi.getData('@vet_token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    console.log(token);
+
     return config;
   },
   error => {
@@ -14,9 +20,11 @@ axios.interceptors.request.use(
 );
 
 const get = url =>
-  axios.get(url).catch(err => {
+  axios.get(`${constants.urlBase}/${url}`).catch(err => {
     console.error(err.response);
     console.error(err.request);
+
+    return err.response;
   });
 
 const post = (url, data) =>
@@ -24,7 +32,7 @@ const post = (url, data) =>
     console.error(err.response);
     console.error(err.request);
 
-    return err;
+    return err.response;
   });
 
 const api = {
