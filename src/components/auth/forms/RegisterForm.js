@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Alert, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -9,40 +9,22 @@ import authService from '../../../providers/services/authService';
 
 import VetInput from '../../shared/VetInput';
 import validators from '../../../utils/validators';
-import { colors } from '../../../assets/styles/baseStyle';
-
-const styles = StyleSheet.create({
-  button: {
-    alignSelf: 'flex-end',
-    backgroundColor: colors.primary,
-    borderRadius: 200,
-    marginTop: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 18,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 2,
-      height: 3,
-    },
-    shadowOpacity: 0.7,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-});
+import { colors, helperStyles } from '../../../assets/styles/baseStyle';
 
 const RegisterForm = ({ navigation }) => {
   const { appDispatch } = useContext(AppContext);
 
   function handleRegisterService(res) {
     appDispatch({ type: 'UPDATE_LOADDING', payload: false });
-    if (res) {
-      Alert.alert('', res.data.response, [
-        {
-          text: 'OK',
-          onPress: () => navigation.navigate('Login'),
-        },
-      ]);
-    }
+    // if (res) {
+    console.log(res);
+    Alert.alert('', res.data.response, [
+      {
+        text: 'OK',
+        onPress: () => navigation.navigate('Login'),
+      },
+    ]);
+    // }
   }
 
   return (
@@ -104,7 +86,7 @@ const RegisterForm = ({ navigation }) => {
             touched={touched}
             value={values.userPasswordConfirm}
           />
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <TouchableOpacity style={helperStyles.auth_btn} onPress={handleSubmit}>
             <Icon name="arrow-right" size={40} color={colors.white} />
           </TouchableOpacity>
         </View>

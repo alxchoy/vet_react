@@ -1,37 +1,11 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import VetInput from '../../shared/VetInput';
 import validators from '../../../utils/validators';
-import { colors } from '../../../assets/styles/baseStyle';
-
-const styles = StyleSheet.create({
-  recovery: {
-    alignSelf: 'flex-end',
-    color: colors.primary,
-    fontSize: 16,
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  button: {
-    alignSelf: 'flex-end',
-    backgroundColor: colors.primary,
-    borderRadius: 200,
-    elevation: 2,
-    marginTop: 40,
-    paddingHorizontal: 20,
-    paddingVertical: 18,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 2,
-      height: 3,
-    },
-    shadowOpacity: 0.7,
-    shadowRadius: 4,
-  },
-});
+import { colors, helperStyles } from '../../../assets/styles/baseStyle';
 
 const RecoveryForm = () => (
   <Formik
@@ -59,7 +33,7 @@ const RecoveryForm = () => (
           touched={touched}
           value={values.userEmail}
         />
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <TouchableOpacity style={helperStyles.auth_btn} onPress={handleSubmit}>
           <Icon name="arrow-right" size={40} color={colors.white} />
         </TouchableOpacity>
       </View>

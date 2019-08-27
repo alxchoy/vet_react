@@ -9,15 +9,22 @@
 import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+import NavigationScreen from 'components/Navigation';
+import HomeScreen from 'components/Home';
+import LoginScreen from 'components/auth/Login';
+import RecoveryScreen from 'components/auth/PasswordRecovery';
+import RegisterScreen from 'components/auth/Register';
+
 import { AppContextProvider } from './context/AppContext';
 
-import HomeScreen from './components/Home';
-import LoginScreen from './components/auth/Login';
-import RecoveryScreen from './components/auth/PasswordRecovery';
-import RegisterScreen from './components/auth/Register';
-
 const AppNavigator = createStackNavigator(
-  { Home: HomeScreen, Login: LoginScreen, Recovery: RecoveryScreen, Register: RegisterScreen },
+  {
+    Home: HomeScreen,
+    Login: LoginScreen,
+    Recovery: RecoveryScreen,
+    Register: RegisterScreen,
+    Navigation: NavigationScreen,
+  },
   {
     initialRouteName: 'Home',
   }

@@ -28,6 +28,16 @@ module.exports = {
     ]
   },
   'plugins': [
-    'prettier'
-  ]
+    'prettier',
+    'import'
+  ],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        alias: {
+          components: './src/components',
+        },
+      }
+    }
+  }
 };

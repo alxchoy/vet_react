@@ -12,7 +12,7 @@ import constants from '../../../utils/constants';
 
 import VetInput from '../../shared/VetInput';
 import validators from '../../../utils/validators';
-import { colors } from '../../../assets/styles/baseStyle';
+import { colors, helperStyles } from '../../../assets/styles/baseStyle';
 
 const styles = StyleSheet.create({
   recovery: {
@@ -21,21 +21,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 10,
     marginBottom: 20,
-  },
-  button: {
-    alignSelf: 'flex-end',
-    backgroundColor: colors.primary,
-    borderRadius: 200,
-    paddingHorizontal: 20,
-    paddingVertical: 18,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 2,
-      height: 3,
-    },
-    shadowOpacity: 0.7,
-    shadowRadius: 4,
-    elevation: 2,
   },
 });
 
@@ -47,8 +32,7 @@ const LoginForm = ({ navigation }) => {
     if (response.status === constants.successCode) {
       await storageApi.storeData('@vet_token', response.data.access_token);
       authService.getId(res => storageApi.storeData('@vet_clientId', res.data.idLogIn));
-
-      // navigation.navigate('Recovery');
+      navigation.navigate('Navigation');
     } else {
       Alert.alert('', response.data.error, [
         {
@@ -90,7 +74,7 @@ const LoginForm = ({ navigation }) => {
           <Text style={styles.recovery} onPress={() => navigation.navigate('Recovery')}>
             Recuperar contraseña
           </Text>
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <TouchableOpacity style={helperStyles.auth_btn} onPress={handleSubmit}>
             <Icon name="arrow-right" size={40} color={colors.white} />
           </TouchableOpacity>
         </View>
