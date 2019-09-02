@@ -1,18 +1,16 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { AppContext } from '../../../context/AppContext';
+import { AppContext } from '../../providers/AppContext';
 
-import authService from '../../../providers/services/authService';
-import storageApi from '../../../providers/storage';
-import constants from '../../../utils/constants';
+import authService from '../../services/authService';
 
-import VetInput from '../../shared/VetInput';
-import validators from '../../../utils/validators';
-import { colors } from '../../../assets/styles/baseStyle';
+import VetInput from '../VetInput';
+import validators from '../../utils/validators';
+import { colors, helperStyles } from '../../assets/styles/baseStyle';
 
 const styles = StyleSheet.create({
   recovery: {
@@ -22,42 +20,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
   },
-  button: {
-    alignSelf: 'flex-end',
-    backgroundColor: colors.primary,
-    borderRadius: 200,
-    paddingHorizontal: 20,
-    paddingVertical: 18,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 2,
-      height: 3,
-    },
-    shadowOpacity: 0.7,
-    shadowRadius: 4,
-    elevation: 2,
-  },
 });
 
 const LoginForm = ({ navigation }) => {
   const { appDispatch } = useContext(AppContext);
 
-  async function handleLoginService(response) {
+  const handleLoginService = () => {
     appDispatch({ type: 'UPDATE_LOADDING', payload: false });
-    if (response.status === constants.successCode) {
-      await storageApi.storeData('@vet_token', response.data.access_token);
-      authService.getId(res => storageApi.storeData('@vet_clientId', res.data.idLogIn));
-
-      // navigation.navigate('Recovery');
-    } else {
-      Alert.alert('', response.data.error, [
-        {
-          text: 'OK',
-          onPress: () => {},
-        },
-      ]);
-    }
-  }
+    navigation.navigate('Navigation');
+  };
 
   return (
     <Formik
@@ -90,7 +61,7 @@ const LoginForm = ({ navigation }) => {
           <Text style={styles.recovery} onPress={() => navigation.navigate('Recovery')}>
             Recuperar contraseña
           </Text>
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <TouchableOpacity style={helperStyles.auth_btn} onPress={handleSubmit}>
             <Icon name="arrow-right" size={40} color={colors.white} />
           </TouchableOpacity>
         </View>

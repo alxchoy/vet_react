@@ -16,4 +16,19 @@ export const helperStyles = StyleSheet.create({
   mt_1: { marginTop: 10 },
   align_self_end: { alignSelf: 'flex-end' },
   align_self_start: { alignSelf: 'flex-start' },
+  auth_btn: {
+    alignSelf: 'flex-end',
+    backgroundColor: colors.primary,
+    borderRadius: 200,
+    paddingHorizontal: 20,
+    paddingVertical: 18,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 3,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 4,
+    elevation: 2,
+  },
 });
