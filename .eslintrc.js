@@ -36,6 +36,9 @@ module.exports = {
       "babel-module": {
         alias: {
           components: './src/components',
+          views: './src/views',
+          providers: './src/providers',
+          services: './src/services'
         },
       }
     }

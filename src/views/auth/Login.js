@@ -1,41 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { colors, helperStyles } from '../../assets/styles/baseStyle';
-import LoginForm from './forms/LoginForm';
-
-const styles = StyleSheet.create({
-  header_title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-  },
-  header_subtitle: {
-    fontSize: 18,
-  },
-  login: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  img_container: {
-    zIndex: -1,
-  },
-});
+import authStyles from './styles';
+import { colors } from '../../assets/styles/baseStyle';
+import LoginForm from '../../components/forms/LoginForm';
 
 const Login = ({ navigation }) => {
   const { height, width } = Dimensions.get('window');
 
   return (
-    <View style={styles.login}>
-      <View style={[helperStyles.mh_2, helperStyles.mt_1]}>
-        <Text style={styles.header_title}>Bienvenido</Text>
-        <Text style={styles.header_subtitle}>Regístrate para ingresar</Text>
+    <View style={authStyles.viewAuth}>
+      <View style={authStyles.headerContainer}>
+        <Text style={authStyles.title}>Bienvenido</Text>
+        <Text style={authStyles.subTitle}>Regístrate para ingresar</Text>
       </View>
-      <View style={helperStyles.mh_2}>
+      <View style={authStyles.formContainer}>
         <LoginForm navigation={navigation} />
       </View>
-      <View style={styles.img_container}>
+      <View style={authStyles.imageContainer}>
         <Image
           source={require('../../assets/img/pet.png')}
           style={{ height: height / 3.6, width }}

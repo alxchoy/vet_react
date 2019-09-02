@@ -4,27 +4,20 @@ import { Alert, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { AppContext } from '../../../context/AppContext';
-import authService from '../../../providers/services/authService';
-
-import VetInput from '../../shared/VetInput';
-import validators from '../../../utils/validators';
-import { colors, helperStyles } from '../../../assets/styles/baseStyle';
+import { AppContext } from 'providers/AppContext';
+import authService from 'services/authService';
+import VetInput from 'components/VetInput';
+import validators from '../../utils/validators';
+import { colors, helperStyles } from '../../assets/styles/baseStyle';
 
 const RegisterForm = ({ navigation }) => {
   const { appDispatch } = useContext(AppContext);
 
   function handleRegisterService(res) {
-    appDispatch({ type: 'UPDATE_LOADDING', payload: false });
-    // if (res) {
-    console.log(res);
     Alert.alert('', res.data.response, [
-      {
-        text: 'OK',
-        onPress: () => navigation.navigate('Login'),
-      },
+      { text: 'OK', onPress: () => navigation.navigate('Login') },
     ]);
-    // }
+    appDispatch({ type: 'UPDATE_LOADDING', payload: false });
   }
 
   return (

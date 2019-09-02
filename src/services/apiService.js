@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-import constants from '../../utils/constants';
-import storageApi from '../storage';
+import constants from '../utils/constants';
+import storageApi from './storageService';
 
 // interceptors
 axios.interceptors.request.use(
   async config => {
     const token = await storageApi.getData('@vet_token');
     if (token) {
+      // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${token}`;
     }
     console.log(token);

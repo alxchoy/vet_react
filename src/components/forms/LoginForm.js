@@ -1,18 +1,16 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { AppContext } from '../../../context/AppContext';
+import { AppContext } from '../../providers/AppContext';
 
-import authService from '../../../providers/services/authService';
-import storageApi from '../../../providers/storage';
-import constants from '../../../utils/constants';
+import authService from '../../services/authService';
 
-import VetInput from '../../shared/VetInput';
-import validators from '../../../utils/validators';
-import { colors, helperStyles } from '../../../assets/styles/baseStyle';
+import VetInput from '../VetInput';
+import validators from '../../utils/validators';
+import { colors, helperStyles } from '../../assets/styles/baseStyle';
 
 const styles = StyleSheet.create({
   recovery: {
@@ -27,21 +25,10 @@ const styles = StyleSheet.create({
 const LoginForm = ({ navigation }) => {
   const { appDispatch } = useContext(AppContext);
 
-  async function handleLoginService(response) {
+  const handleLoginService = () => {
     appDispatch({ type: 'UPDATE_LOADDING', payload: false });
-    if (response.status === constants.successCode) {
-      await storageApi.storeData('@vet_token', response.data.access_token);
-      authService.getId(res => storageApi.storeData('@vet_clientId', res.data.idLogIn));
-      navigation.navigate('Navigation');
-    } else {
-      Alert.alert('', response.data.error, [
-        {
-          text: 'OK',
-          onPress: () => {},
-        },
-      ]);
-    }
-  }
+    navigation.navigate('Navigation');
+  };
 
   return (
     <Formik

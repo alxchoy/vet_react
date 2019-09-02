@@ -3,9 +3,9 @@ import { TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import VetInput from '../../shared/VetInput';
-import validators from '../../../utils/validators';
-import { colors, helperStyles } from '../../../assets/styles/baseStyle';
+import VetInput from '../VetInput';
+import validators from '../../utils/validators';
+import { colors, helperStyles } from '../../assets/styles/baseStyle';
 
 const RecoveryForm = () => (
   <Formik

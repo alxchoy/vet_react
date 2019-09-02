@@ -9,13 +9,13 @@
 import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import NavigationScreen from 'components/Navigation';
-import HomeScreen from 'components/Home';
-import LoginScreen from 'components/auth/Login';
-import RecoveryScreen from 'components/auth/PasswordRecovery';
-import RegisterScreen from 'components/auth/Register';
+import NavigationScreen from 'views/Navigation';
+import HomeScreen from 'views/Home';
+import LoginScreen from 'views/auth/Login';
+import RecoveryScreen from 'views/auth/PasswordRecovery';
+import RegisterScreen from 'views/auth/Register';
 
-import { AppContextProvider } from './context/AppContext';
+import { AppContextProvider } from 'providers/AppContext';
 
 const AppNavigator = createStackNavigator(
   {

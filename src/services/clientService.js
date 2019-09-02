@@ -1,6 +1,6 @@
 import api from './apiService';
 
-import constants from '../../utils/constants';
+import constants from '../utils/constants';
 
 const createClient = (userData, handleResponse) => {
   api

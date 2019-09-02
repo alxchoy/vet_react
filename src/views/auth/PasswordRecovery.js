@@ -1,37 +1,23 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { colors, helperStyles } from '../../assets/styles/baseStyle';
-import RecoveryForm from './forms/RecoveryForm';
-
-const styles = StyleSheet.create({
-  header_title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-  },
-  recover: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  img_container: {
-    zIndex: -1,
-  },
-});
+import authStyles from './styles';
+import { colors } from '../../assets/styles/baseStyle';
+import RecoveryForm from '../../components/forms/RecoveryForm';
 
 const PasswordRecovery = () => {
   const { height, width } = Dimensions.get('window');
 
   return (
-    <View style={styles.recover}>
-      <View style={[helperStyles.mh_2, helperStyles.mt_1]}>
-        <Text style={styles.header_title}>Recuperar contraseña</Text>
+    <View style={authStyles.viewAuth}>
+      <View style={authStyles.headerContainer}>
+        <Text style={authStyles.title}>Recuperar contraseña</Text>
       </View>
-      <View style={helperStyles.mh_2}>
+      <View style={authStyles.formContainer}>
         <RecoveryForm />
       </View>
-      <View style={styles.img_container}>
+      <View style={authStyles.imageContainer}>
         <Image
           source={require('../../assets/img/pet.png')}
           style={{ height: height / 3.6, width }}

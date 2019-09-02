@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, Modal, StyleSheet, View } from 'react-native';
 
-import { colors } from '../../assets/styles/baseStyle';
+import { colors } from '../assets/styles/baseStyle';
 
 const styles = StyleSheet.create({
   container: {

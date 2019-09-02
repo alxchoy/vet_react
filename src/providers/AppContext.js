@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 
-import VetLoader from '../components/shared/VetLoader';
+import VetLoader from '../components/VetLoader';
 
 const initialState = {
   isLoadding: false,

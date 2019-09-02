@@ -1,29 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, ScrollView, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { colors, helperStyles } from '../../assets/styles/baseStyle';
-import RegisterForm from './forms/RegisterForm';
-
-const styles = StyleSheet.create({
-  header_title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  register: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  img_container: {
-    zIndex: -1,
-  },
-  scrollView: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-});
+import RegisterForm from 'components/forms/RegisterForm';
+import authStyles from './styles';
+import { colors } from '../../assets/styles/baseStyle';
 
 const Register = ({ navigation }) => {
   const [enableScroll, setEnableScroll] = useState(false);
@@ -35,14 +17,14 @@ const Register = ({ navigation }) => {
 
   return (
     <ScrollView onContentSizeChange={onContentSizeChange} scrollEnabled={enableScroll}>
-      <View style={styles.register}>
-        <View style={[helperStyles.mh_2, helperStyles.mt_1]}>
-          <Text style={styles.header_title}>Regístrate</Text>
+      <View style={authStyles.viewAuth}>
+        <View style={authStyles.headerContainer}>
+          <Text style={authStyles.title}>Regístrate</Text>
         </View>
-        <View style={helperStyles.mh_2}>
+        <View style={authStyles.formContainer}>
           <RegisterForm navigation={navigation} />
         </View>
-        <View style={styles.img_container}>
+        <View style={authStyles.imageContainer}>
           <Image
             source={require('../../assets/img/pet.png')}
             style={{ width, height: height / 3.6 }}

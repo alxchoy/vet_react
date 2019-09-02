@@ -4,7 +4,7 @@ import { Animated, Easing, ImageBackground, StyleSheet, View } from 'react-nativ
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-import VetButton from 'components/shared/VetButton';
+import VetButton from 'components/VetButton';
 import { colors } from '../assets/styles/baseStyle';
 
 const styles = StyleSheet.create({
