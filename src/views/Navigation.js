@@ -67,10 +67,21 @@ const OtherStack = createStackNavigator({
 //   }
 // );
 
-const Navigation = createBottomTabNavigator({
-  Pets: PetStack,
-  Other: OtherStack,
-});
+const Navigation = createBottomTabNavigator(
+  {
+    Pets: PetStack,
+    Other: OtherStack,
+  },
+  {
+    navigationOptions: {},
+    tabBarOptions: {
+      activeTintColor: colors.primary,
+      labelStyle: {
+        fontSize: 12,
+      },
+    },
+  }
+);
 
 Navigation.navigationOptions = {
   header: null,

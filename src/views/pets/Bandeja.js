@@ -32,8 +32,8 @@ const Bandeja = () => {
           <Text style={petStyles.addPetBtnText}>Agregar mascota</Text>
         </View>
       </TouchableOpacity>
-
       <FlatList
+        style={petStyles.list}
         data={pets}
         numColumns={2}
         renderItem={({ item }) => (

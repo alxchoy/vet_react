@@ -24,4 +24,7 @@ export default StyleSheet.create({
   petContainer: {
     padding: 20,
   },
+  list: {
+    marginTop: 15,
+  },
 });
