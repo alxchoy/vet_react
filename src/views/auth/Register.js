@@ -50,6 +50,7 @@ Register.navigationOptions = ({ navigation }) => {
     ),
     headerStyle: {
       borderBottomColor: 'transparent',
+      elevation: 0,
     },
   };
 };
