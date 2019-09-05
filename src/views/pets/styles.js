@@ -22,9 +22,13 @@ export default StyleSheet.create({
     marginRight: 8,
   },
   petContainer: {
-    padding: 20,
+    margin: 20,
   },
   list: {
     marginTop: 15,
+  },
+  listItem: {
+    flex: 1,
+    borderRadius: 10,
   },
 });

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -7,7 +8,7 @@ import petService from 'services/petService';
 import { colors } from '../../assets/styles/baseStyle';
 import petStyles from './styles';
 
-const Bandeja = () => {
+const Bandeja = ({ navigation }) => {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
@@ -37,12 +38,25 @@ const Bandeja = () => {
         data={pets}
         numColumns={2}
         renderItem={({ item }) => (
-          <VetPetCard name={item.petName} age={item.petAge} imgUrl={item.petPathImage} />
+          <TouchableOpacity
+            style={petStyles.listItem}
+            onPress={() =>
+              navigation.navigate('Pet', {
+                pet: item,
+              })
+            }
+          >
+            <VetPetCard name={item.petName} age={item.petAge} imgUrl={item.petPathImage} />
+          </TouchableOpacity>
         )}
         keyExtractor={(item, index) => item.petId}
       />
     </View>
   );
+};
+
+Bandeja.propTypes = {
+  navigation: PropTypes.instanceOf(Object).isRequired,
 };
 
 Bandeja.navigationOptions = ({ navigation }) => {
