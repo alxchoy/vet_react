@@ -23,16 +23,21 @@ const styles = StyleSheet.create({
 
 const VetImageProfile = ({ imgUrl }) => {
   const { width } = Dimensions.get('window');
+  const imgSource = imgUrl ? { uri: imgUrl } : require('../assets/img/addPhoto.png');
 
   return (
     <View style={styles.imageContainer}>
-      <Image source={{ uri: imgUrl }} style={styles.image(width)} />
+      <Image source={imgSource} style={styles.image(width)} />
     </View>
   );
 };
 
+VetImageProfile.defaultProps = {
+  imgUrl: null,
+};
+
 VetImageProfile.propTypes = {
-  imgUrl: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string,
 };
 
 export default VetImageProfile;

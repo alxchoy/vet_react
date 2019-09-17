@@ -15,11 +15,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingVertical: 15,
   },
-  text: {
-    fontSize: 20,
-    // fontWeight: 'bold',
-    color: 'white',
+  blockSecondary: {
+    alignItems: 'center',
+    borderRadius: 30,
+    paddingVertical: 10,
   },
+  text: type => ({
+    fontSize: type === 'blockSecondary' ? 16 : 20,
+    color: 'white',
+  }),
 });
 
 const VetButton = ({ color, text, type, onPress }) => {
@@ -30,7 +34,7 @@ const VetButton = ({ color, text, type, onPress }) => {
       style={[styles.button, styleBtn, { backgroundColor: color }]}
       onPress={onPress}
     >
-      <Text style={styles.text}>{text.toUpperCase()}</Text>
+      <Text style={styles.text(type)}>{text.toUpperCase()}</Text>
     </TouchableOpacity>
   );
 };
@@ -43,7 +47,7 @@ VetButton.propTypes = {
   color: PropTypes.string,
   onPress: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['block', 'outline']).isRequired,
+  type: PropTypes.oneOf(['block', 'blockSecondary', 'outline']).isRequired,
 };
 
 export default VetButton;

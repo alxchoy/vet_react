@@ -24,10 +24,30 @@ const RegisterFormValidation = Yup.object().shape({
     .required('Campo requerido'),
 });
 
+const PetFormValidation = Yup.object().shape({
+  petBirthDate: Yup.string().required('Campor requerido'),
+  petBreed: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  petHabitat: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  petName: Yup.string().required('Campor requerido'),
+  petSex: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  petSize: Yup.string().required('Campor requerido'),
+  petSpecie: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  petWeight: Yup.string().required('Campor requerido'),
+});
+
 const validators = {
   LoginFormValidation,
   RecoveryFormValidation,
   RegisterFormValidation,
+  PetFormValidation,
 };
 
 export default validators;

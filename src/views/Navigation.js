@@ -36,6 +36,7 @@ const Navigation = createBottomTabNavigator(
 
         return <Icon name={iconName} color={tintColor} size={25} />;
       },
+      // tabBarVisible: false,
     }),
     tabBarOptions: {
       activeTintColor: colors.primary,

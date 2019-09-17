@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const colors = {
   primary: 'rgba(90, 168, 158, 1.0)',
   alert: 'rgba(202, 57, 48, 1.0)',
-  gray: 'rgba(219, 219, 219, 1.0)',
+  gray: 'rgba(232, 232, 232, 1.0)',
   white: '#fff',
 };
 
@@ -30,5 +30,10 @@ export const helperStyles = StyleSheet.create({
     shadowOpacity: 0.7,
     shadowRadius: 4,
     elevation: 2,
+  },
+  titleSection: {
+    paddingHorizontal: 15,
+    borderTopWidth: 1,
+    borderTopColor: colors.gray,
   },
 });

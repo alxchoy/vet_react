@@ -16,22 +16,24 @@ const Register = ({ navigation }) => {
   }
 
   return (
-    <ScrollView onContentSizeChange={onContentSizeChange} scrollEnabled={enableScroll}>
-      <View style={authStyles.viewAuth}>
-        <View style={authStyles.headerContainer}>
-          <Text style={authStyles.title}>Regístrate</Text>
+    <View style={{ flex: 1 }}>
+      <ScrollView onContentSizeChange={onContentSizeChange} scrollEnabled={enableScroll}>
+        <View style={authStyles.viewAuth}>
+          <View style={authStyles.headerContainer}>
+            <Text style={authStyles.title}>Regístrate</Text>
+          </View>
+          <View style={authStyles.formContainer}>
+            <RegisterForm navigation={navigation} />
+          </View>
+          <View style={authStyles.imageContainer}>
+            <Image
+              source={require('../../assets/img/pet.png')}
+              style={{ width, height: height / 3.6 }}
+            />
+          </View>
         </View>
-        <View style={authStyles.formContainer}>
-          <RegisterForm navigation={navigation} />
-        </View>
-        <View style={authStyles.imageContainer}>
-          <Image
-            source={require('../../assets/img/pet.png')}
-            style={{ width, height: height / 3.6 }}
-          />
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 

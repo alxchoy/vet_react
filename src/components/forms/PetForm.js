@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import VetInput from 'components/VetInput';
 import VetSelect from 'components/VetSelect';
-import { AppContext } from '../../providers/AppContext';
-
-import authService from '../../services/authService';
+import VetDate from 'components/VetDate';
+import VetButton from 'components/VetButton';
 
 import validators from '../../utils/validators';
 import { colors, helperStyles } from '../../assets/styles/baseStyle';
@@ -20,13 +19,13 @@ const PetForm = () => {
         petName: '',
         petBirthDate: '',
         petSpecie: '',
-        petRace: '',
+        petBreed: '',
         petSex: '',
         petSize: '',
         petWeight: '',
-        petHabitad: '',
+        petHabitat: '',
       }}
-      // validationSchema={validators.LoginFormValidation}
+      validationSchema={validators.PetFormValidation}
       onSubmit={values => {
         // appDispatch({ type: 'UPDATE_LOADDING', payload: true });
         // authService.login(values, handleLoginService);
@@ -37,25 +36,72 @@ const PetForm = () => {
         <View>
           <VetInput
             change={handleChange('petName')}
-            touched={touched}
             errors={errors}
-            placeholder="usuario"
+            icon="paw"
+            placeholder="nombre"
             property="petName"
-            value={values.userName}
+            touched={touched}
+            value={values.petName}
+          />
+          <VetDate change={handleChange('petBirthDate')} icon="calendar" />
+          <VetSelect
+            change={handleChange('petSpecie')}
+            icon="paw"
+            lookupName="species"
+            lookupPropertyName="specieName"
+            lookupPropertyValue="specieId"
+          />
+          <VetSelect
+            change={handleChange('petBreed')}
+            dependingValue={values.petSpecie}
+            icon="paw"
+            lookupName="breed"
+            lookupPropertyName="raceName"
+            lookupPropertyValue="raceId"
+          />
+          <VetSelect
+            change={handleChange('petSex')}
+            icon="venus-mars"
+            lookupName="sex"
+            lookupPropertyName="description"
+            lookupPropertyValue="id"
           />
           <VetInput
-            change={handleChange('userPassword')}
-            touched={touched}
+            change={handleChange('petSize')}
             errors={errors}
-            placeholder="contraseña"
-            property="userPassword"
-            value={values.userPassword}
+            icon="balance-scale"
+            placeholder="tamaño"
+            property="petSize"
+            touched={touched}
+            value={values.petSize}
           />
-          <VetSelect change={handleChange('petSpecie')} />
+          <VetInput
+            change={handleChange('petWeight')}
+            errors={errors}
+            icon="balance-scale"
+            placeholder="peso"
+            property="petWeight"
+            touched={touched}
+            value={values.petWeight}
+          />
+          <VetSelect
+            change={handleChange('petHabitat')}
+            icon="compass"
+            lookupName="habitat"
+            lookupPropertyName="description"
+            lookupPropertyValue="id"
+          />
 
-          <TouchableOpacity style={helperStyles.auth_btn} onPress={handleSubmit}>
-            <Icon name="arrow-right" size={40} color={colors.white} />
-          </TouchableOpacity>
+          <View
+            style={{ backgroundColor: colors.gray, padding: 20, position: 'absolute', bottom: 100 }}
+          >
+            <VetButton
+              color={colors.primary}
+              onPress={handleSubmit}
+              text="Agregar mascota"
+              type="block"
+            />
+          </View>
         </View>
       )}
     </Formik>

@@ -10,6 +10,7 @@ import petStyles from './styles';
 
 const Bandeja = ({ navigation }) => {
   const [pets, setPets] = useState([]);
+  const isReload = navigation.getParam('isReload', false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -18,11 +19,11 @@ const Bandeja = ({ navigation }) => {
     };
 
     fetch();
-  }, []);
+  }, [isReload]);
 
   return (
-    <View style={petStyles.petContainer}>
-      <TouchableOpacity style={petStyles.addPetBtn} onPress={() => console.log('hola')}>
+    <View style={petStyles.petBody}>
+      <TouchableOpacity style={petStyles.addPetBtn} onPress={() => navigation.navigate('Pet')}>
         <View style={petStyles.addPetBtnInner}>
           <Icon
             name="plus-circle"
@@ -49,7 +50,7 @@ const Bandeja = ({ navigation }) => {
             <VetPetCard name={item.petName} age={item.petAge} imgUrl={item.petPathImage} />
           </TouchableOpacity>
         )}
-        keyExtractor={(item, index) => item.petId}
+        keyExtractor={item => item.petId}
       />
     </View>
   );

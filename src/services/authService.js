@@ -2,6 +2,7 @@ import { Alert } from 'react-native';
 
 import api from './apiService';
 import storageService from './storageService';
+import { getLookups } from './lookupsService';
 import constants from '../utils/constants';
 
 const getId = async handleResponse => {
@@ -32,6 +33,7 @@ const login = async (userData, handleResponse) => {
   if (response.status === constants.successCode) {
     await storageService.storeData('@vet_token', response.data.access_token);
     getId(handleResponse);
+    getLookups();
   } else {
     Alert.alert('', response.data.error, [
       {

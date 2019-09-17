@@ -22,7 +22,19 @@ export default StyleSheet.create({
     marginRight: 8,
   },
   petContainer: {
+    flex: 1,
+  },
+  petBody: {
     margin: 20,
+  },
+  petFooter: {
+    backgroundColor: colors.gray,
+    padding: 20,
+    marginTop: 10,
+  },
+  profileContainer: {
+    marginHorizontal: 20,
+    marginTop: 20,
   },
   list: {
     marginTop: 15,
@@ -30,5 +42,16 @@ export default StyleSheet.create({
   listItem: {
     flex: 1,
     borderRadius: 10,
+  },
+  titleSectionContainer: {
+    borderTopWidth: 1,
+    borderTopColor: colors.gray,
+    paddingTop: 20,
+    marginVertical: 10,
+    marginHorizontal: 20,
+  },
+  titleSection: {
+    fontSize: 18,
+    marginBottom: 10,
   },
 });

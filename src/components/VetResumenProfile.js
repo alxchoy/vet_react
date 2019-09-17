@@ -27,42 +27,48 @@ const styles = StyleSheet.create({
   },
 });
 
-const VetResumenProfile = ({ imgUrl }) => {
+const VetResumenProfile = ({ petInfo }) => {
   return (
     <View>
-      <VetImageProfile imgUrl={imgUrl} />
-      <View style={styles.infoContainer}>
-        <View style={[styles.infoItem, styles.infoItemBorderRight]}>
-          <Text numberOfLines={1} style={styles.infoItemTitle}>
-            Nombre
-          </Text>
-          <Text numberOfLines={1} style={styles.infoItemSubtitle}>
-            Peluchin Tercero
-          </Text>
+      <VetImageProfile imgUrl={petInfo ? petInfo.petPathImage : null} />
+      {petInfo && (
+        <View style={styles.infoContainer}>
+          <View style={[styles.infoItem, styles.infoItemBorderRight]}>
+            <Text numberOfLines={1} style={styles.infoItemTitle}>
+              Nombre
+            </Text>
+            <Text numberOfLines={1} style={styles.infoItemSubtitle}>
+              {petInfo.petName}
+            </Text>
+          </View>
+          <View style={[styles.infoItem, styles.infoItemBorderRight]}>
+            <Text numberOfLines={1} style={styles.infoItemTitle}>
+              Edad
+            </Text>
+            <Text numberOfLines={1} style={styles.infoItemSubtitle}>
+              {petInfo.petAge}
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text numberOfLines={1} style={styles.infoItemTitle}>
+              Raza
+            </Text>
+            <Text numberOfLines={1} style={styles.infoItemSubtitle}>
+              {petInfo.raceName}
+            </Text>
+          </View>
         </View>
-        <View style={[styles.infoItem, styles.infoItemBorderRight]}>
-          <Text numberOfLines={1} style={styles.infoItemTitle}>
-            Edad
-          </Text>
-          <Text numberOfLines={1} style={styles.infoItemSubtitle}>
-            3 a. 9 m.
-          </Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text numberOfLines={1} style={styles.infoItemTitle}>
-            Raza
-          </Text>
-          <Text numberOfLines={1} style={styles.infoItemSubtitle}>
-            Cocker Spanish
-          </Text>
-        </View>
-      </View>
+      )}
     </View>
   );
 };
 
+VetResumenProfile.defaultProps = {
+  petInfo: null,
+};
+
 VetResumenProfile.propTypes = {
-  imgUrl: PropTypes.string.isRequired,
+  petInfo: PropTypes.instanceOf(Object),
 };
 
 export default VetResumenProfile;

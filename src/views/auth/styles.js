@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   viewAuth: {
     flex: 1,
-    flexDirection: 'column',
+    // flexDirection: 'column',
     justifyContent: 'space-between',
   },
 });
