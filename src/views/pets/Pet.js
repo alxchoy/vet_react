@@ -12,6 +12,7 @@ import VetButton from 'components/VetButton';
 import VetInput from 'components/VetInput';
 import VetSelect from 'components/VetSelect';
 import VetDate from 'components/VetDate';
+import VetItemsList from 'components/VetItemsList';
 import { AppContext } from '../../providers/AppContext';
 
 import validators from '../../utils/validators';
@@ -21,6 +22,9 @@ import petStyles from './styles';
 const Pet = ({ navigation }) => {
   const [alimentations, setAlimentations] = React.useState([]);
   const [vaccines, setVaccines] = React.useState([]);
+  const [aliment, setAliment] = React.useState();
+  const [vaccine, setVaccine] = React.useState([]);
+
   const pet = navigation.getParam('pet', null);
   const { appDispatch } = React.useContext(AppContext);
 
@@ -153,11 +157,13 @@ const Pet = ({ navigation }) => {
                       data: alimentations,
                       value: 'alimentationId',
                       description: 'alimentationName',
+                      onCallback: item => console.log(item),
                     });
                   }}
                   text="Agregar alimentos"
                   type="blockSecondary"
                 />
+                <VetItemsList />
               </View>
               <View style={petStyles.titleSectionContainer}>
                 <Text style={petStyles.titleSection}>Vacunas</Text>

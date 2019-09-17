@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { colors } from '../assets/styles/baseStyle';
@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
   right: {
     color: 'white',
   },
+  row: {
+    borderBottomColor: colors.gray,
+    borderBottomWidth: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
 });
 
 const VetSearchList = ({ navigation }) => {
@@ -38,9 +44,16 @@ const VetSearchList = ({ navigation }) => {
         data={dataList}
         keyExtractor={item => `${item[value]}`}
         renderItem={({ item }) => (
-          <View>
-            <Text>{item[description]}</Text>
-          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.state.params.onCallback(item);
+              navigation.goBack(null);
+            }}
+          >
+            <View style={styles.row} on>
+              <Text>{item[description]}</Text>
+            </View>
+          </TouchableOpacity>
         )}
       />
     </View>
