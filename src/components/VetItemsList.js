@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -16,32 +17,33 @@ const styles = StyleSheet.create({
   },
 });
 
-const VetItemsList = ({ data }) => {
-  const [list, setList] = React.useState([]);
-  const sections = [
-    { id: 'a', description: 'aa' },
-    { id: 'b', description: 'bb' },
-    { id: 'c', description: 'cc' },
-  ];
+const VetItemsList = ({ data, propertyItem, valueItem, onCallbackDelete }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={sections}
-        keyExtractor={item => item.id}
+        data={data}
+        keyExtractor={item => `${item[valueItem]}`}
         renderItem={({ item }) => (
           <View style={styles.row}>
-            <Text>{item.description}</Text>
+            <Text>{item[propertyItem]}</Text>
             <Icon
               name="trash"
               size={20}
               color={colors.alert}
-              onPress={() => console.log('delete')}
+              onPress={() => onCallbackDelete(item)}
             />
           </View>
         )}
       />
     </View>
   );
+};
+
+VetItemsList.propTypes = {
+  data: PropTypes.arrayOf(Object).isRequired,
+  propertyItem: PropTypes.string.isRequired,
+  valueItem: PropTypes.string.isRequired,
+  onCallbackDelete: PropTypes.func.isRequired,
 };
 
 export default VetItemsList;

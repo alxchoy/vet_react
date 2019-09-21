@@ -13,6 +13,7 @@ import VetInput from 'components/VetInput';
 import VetSelect from 'components/VetSelect';
 import VetDate from 'components/VetDate';
 import VetItemsList from 'components/VetItemsList';
+import VetAddSearch from 'components/VetAddSearch';
 import { AppContext } from '../../providers/AppContext';
 
 import validators from '../../utils/validators';
@@ -22,8 +23,6 @@ import petStyles from './styles';
 const Pet = ({ navigation }) => {
   const [alimentations, setAlimentations] = React.useState([]);
   const [vaccines, setVaccines] = React.useState([]);
-  const [aliment, setAliment] = React.useState();
-  const [vaccine, setVaccine] = React.useState([]);
 
   const pet = navigation.getParam('pet', null);
   const { appDispatch } = React.useContext(AppContext);
@@ -54,6 +53,11 @@ const Pet = ({ navigation }) => {
         }}
         validationSchema={validators.PetFormValidation}
         onSubmit={values => {
+          if (pet) {
+            navigation.navigate('Report', { pet });
+            return null;
+          }
+
           appDispatch({ type: 'UPDATE_LOADDING', payload: true });
           petService.createPet(values, () => {
             appDispatch({ type: 'UPDATE_LOADDING', payload: false });
@@ -148,44 +152,40 @@ const Pet = ({ navigation }) => {
                   touched={touched}
                 />
               </View>
-              <View style={petStyles.titleSectionContainer}>
-                <Text style={petStyles.titleSection}>Alimentación</Text>
-                <VetButton
-                  color={colors.primary}
-                  onPress={() => {
-                    navigation.navigate('Search', {
-                      data: alimentations,
-                      value: 'alimentationId',
-                      description: 'alimentationName',
-                      onCallback: item => console.log(item),
-                    });
-                  }}
-                  text="Agregar alimentos"
-                  type="blockSecondary"
-                />
-                <VetItemsList />
-              </View>
-              <View style={petStyles.titleSectionContainer}>
-                <Text style={petStyles.titleSection}>Vacunas</Text>
-                <VetButton
-                  color={colors.primary}
-                  onPress={() => {
-                    navigation.navigate('Search', {
-                      data: vaccines,
-                      value: 'vaccineId',
-                      description: 'vaccineName',
-                    });
-                  }}
-                  text="Agregar vacunas"
-                  type="blockSecondary"
-                />
-              </View>
+              {pet && (
+                <View style={petStyles.titleSectionContainer}>
+                  <Text style={petStyles.titleSection}>Alimentación</Text>
+                  <VetAddSearch
+                    btnText="Agregar alimentos"
+                    navigation={navigation}
+                    listSearch={alimentations}
+                    valueSearch="alimentationId"
+                    descriptionSearch="alimentationName"
+                    petId={pet.petId}
+                    type="aliments"
+                  />
+                </View>
+              )}
+              {pet && (
+                <View style={petStyles.titleSectionContainer}>
+                  <Text style={petStyles.titleSection}>Vacunas</Text>
+                  <VetAddSearch
+                    btnText="Agregar vacunas"
+                    navigation={navigation}
+                    listSearch={vaccines}
+                    valueSearch="vaccineId"
+                    descriptionSearch="vaccineName"
+                    petId={pet.petId}
+                    type="vaccines"
+                  />
+                </View>
+              )}
             </ScrollView>
             <View style={petStyles.petFooter}>
               <VetButton
-                color={colors.primary}
-                onPress={handleSubmit}
-                text="Agregar mascota"
+                color={pet ? colors.alert : colors.primary}
+                onPress={() => navigation.navigate('Report', { pet })}
+                text={pet ? 'Reportar enfermedad' : 'Agregar mascota'}
                 type="block"
               />
             </View>

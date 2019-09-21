@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import VetSearchList from 'components/VetSearchList';
 import BandejaScreen from './Bandeja';
 import PetScreen from './Pet';
+import ReportScreen from './Report';
 
 const PetMainStack = createStackNavigator({
   Bandeja: BandejaScreen,
@@ -13,6 +14,7 @@ const PetStack = createStackNavigator(
   {
     Bandeja: BandejaScreen,
     Pet: PetScreen,
+    Report: ReportScreen,
     Search: VetSearchList,
   },
   {
@@ -21,7 +23,6 @@ const PetStack = createStackNavigator(
 );
 
 PetStack.navigationOptions = ({ navigation }) => {
-  console.log(navigation);
   return {
     tabBarVisible: navigation.state.index < 1,
   };

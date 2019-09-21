@@ -39,8 +39,80 @@ const createPet = async (request, handleResponse) => {
   handleResponse();
 };
 
+const getPetAlimentationList = async petId => {
+  const response = await api.get(`api/pet/getAlimentationByPet?PetId=${petId}&AlimentationName=`);
+
+  if (response.status !== constants.successCode) {
+    Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
+    return null;
+  }
+
+  return response.data;
+};
+
+const addPetALimentation = async (request, handleResponse) => {
+  const response = await api.post('api/pet/addAlimentation', request);
+
+  if (response.status !== constants.successCode) {
+    Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
+    return null;
+  }
+
+  handleResponse();
+};
+
+const deletePetAlimentation = async (petAlimentationId, handleResponse) => {
+  const response = await api.get(`api/pet/deleteAlimentation/${petAlimentationId}`);
+
+  if (response.status !== constants.successCode) {
+    Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
+    return null;
+  }
+
+  handleResponse();
+};
+
+const getPetVaccineList = async petId => {
+  const response = await api.get(`api/pet/getVaccinesByPet?PetId=${petId}&VaccinesName=`);
+
+  if (response.status !== constants.successCode) {
+    Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
+    return null;
+  }
+
+  return response.data;
+};
+
+const addPetVaccine = async (request, handleResponse) => {
+  const response = await api.post('api/pet/addVaccine', request);
+
+  if (response.status !== constants.successCode) {
+    Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
+    return null;
+  }
+
+  handleResponse();
+};
+
+const deletePetVAccine = async (petVaccineId, handleResponse) => {
+  const response = await api.get(`api/pet/deleteVaccine/${petVaccineId}`);
+
+  if (response.status !== constants.successCode) {
+    Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
+    return null;
+  }
+
+  handleResponse();
+};
+
 export default {
   getPetList,
   getBreedList,
   createPet,
+  getPetAlimentationList,
+  addPetALimentation,
+  deletePetAlimentation,
+  getPetVaccineList,
+  addPetVaccine,
+  deletePetVAccine,
 };

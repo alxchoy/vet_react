@@ -5,7 +5,9 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "reload-pod-ios": "rm -rf node_modules && npm install && cd ios && pod install && cd",
+    "ios": "npx react-native run-ios"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",

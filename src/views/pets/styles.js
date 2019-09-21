@@ -54,4 +54,8 @@ export default StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
   },
+  reportBtnContainer: {
+    marginHorizontal: 20,
+    marginTop: 30,
+  },
 });
