@@ -4,6 +4,7 @@ import VetSearchList from 'components/VetSearchList';
 import BandejaScreen from './Bandeja';
 import PetScreen from './Pet';
 import ReportScreen from './Report';
+import ResultScreen from './Results';
 
 const PetMainStack = createStackNavigator({
   Bandeja: BandejaScreen,
@@ -15,6 +16,7 @@ const PetStack = createStackNavigator(
     Bandeja: BandejaScreen,
     Pet: PetScreen,
     Report: ReportScreen,
+    Result: ResultScreen,
     Search: VetSearchList,
   },
   {

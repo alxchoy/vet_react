@@ -33,7 +33,7 @@ const createPet = async (request, handleResponse) => {
 
   if (response.status !== constants.successCode) {
     Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
-    return null;
+    return;
   }
 
   handleResponse();
@@ -55,7 +55,7 @@ const addPetALimentation = async (request, handleResponse) => {
 
   if (response.status !== constants.successCode) {
     Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
-    return null;
+    return;
   }
 
   handleResponse();
@@ -66,7 +66,7 @@ const deletePetAlimentation = async (petAlimentationId, handleResponse) => {
 
   if (response.status !== constants.successCode) {
     Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
-    return null;
+    return;
   }
 
   handleResponse();
@@ -88,7 +88,7 @@ const addPetVaccine = async (request, handleResponse) => {
 
   if (response.status !== constants.successCode) {
     Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
-    return null;
+    return;
   }
 
   handleResponse();
@@ -99,10 +99,22 @@ const deletePetVAccine = async (petVaccineId, handleResponse) => {
 
   if (response.status !== constants.successCode) {
     Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
-    return null;
+    return;
   }
 
   handleResponse();
+};
+
+const getDiagnostic = async request => {
+  const { petId, symptomIds } = request;
+  const response = await api.get(`api/pet/GetDiagnostic?petId=${petId}&symptomIds=${symptomIds}`);
+
+  if (response.status !== constants.successCode) {
+    Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
+    return null;
+  }
+
+  return response.data;
 };
 
 export default {
@@ -115,4 +127,5 @@ export default {
   getPetVaccineList,
   addPetVaccine,
   deletePetVAccine,
+  getDiagnostic,
 };

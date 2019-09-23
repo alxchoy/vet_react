@@ -14,7 +14,7 @@ import petStyles from './styles';
 
 const Report = ({ navigation }) => {
   const [symptoms, setSymptoms] = React.useState([]);
-
+  const [symptomsSelected, setSymptomsSelected] = React.useState([]);
   const pet = navigation.getParam('pet', null);
 
   React.useEffect(() => {
@@ -42,10 +42,18 @@ const Report = ({ navigation }) => {
           descriptionSearch="symptomDescription"
           petId={pet.petId}
           type="symptoms"
+          onCallbackList={list => setSymptomsSelected(list)}
         />
       </View>
       <View style={petStyles.reportBtnContainer}>
-        <VetButton color={colors.alert} onPress={() => {}} text="Reportar" type="block" />
+        <VetButton
+          color={colors.alert}
+          onPress={() => {
+            navigation.navigate('Result', { symptomsSelected, petId: pet.petId });
+          }}
+          text="Reportar"
+          type="block"
+        />
       </View>
     </View>
   );

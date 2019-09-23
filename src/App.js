@@ -14,6 +14,7 @@ import HomeScreen from 'views/Home';
 import LoginScreen from 'views/auth/Login';
 import RecoveryScreen from 'views/auth/PasswordRecovery';
 import RegisterScreen from 'views/auth/Register';
+import ClinicScreen from 'views/clinic/Clinic';
 
 import { AppContextProvider } from 'providers/AppContext';
 
@@ -23,6 +24,7 @@ const AppNavigator = createStackNavigator(
     Login: LoginScreen,
     Recovery: RecoveryScreen,
     Register: RegisterScreen,
+    Clinic: ClinicScreen,
     Navigation: NavigationScreen,
   },
   {

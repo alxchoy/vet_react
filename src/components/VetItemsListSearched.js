@@ -7,20 +7,17 @@ import { colors } from '../assets/styles/baseStyle';
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
   row: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingVertical: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray,
-  },
-  text: {
-    marginRight: 10,
   },
 });
 
-const VetItemsList = ({ data, propertyItem, valueItem }) => {
+const VetItemsListSearched = ({ data, propertyItem, valueItem, onCallbackDelete }) => {
   return (
     <View style={styles.container}>
       <FlatList
@@ -28,8 +25,13 @@ const VetItemsList = ({ data, propertyItem, valueItem }) => {
         keyExtractor={item => `${item[valueItem]}`}
         renderItem={({ item }) => (
           <View style={styles.row}>
-            <Text style={styles.text}>{item[propertyItem]}</Text>
-            <Icon name="info" size={20} color={colors.alert} onPress={() => {}} />
+            <Text>{item[propertyItem]}</Text>
+            <Icon
+              name="trash"
+              size={20}
+              color={colors.alert}
+              onPress={() => onCallbackDelete(item)}
+            />
           </View>
         )}
       />
@@ -37,10 +39,11 @@ const VetItemsList = ({ data, propertyItem, valueItem }) => {
   );
 };
 
-VetItemsList.propTypes = {
+VetItemsListSearched.propTypes = {
   data: PropTypes.arrayOf(Object).isRequired,
   propertyItem: PropTypes.string.isRequired,
   valueItem: PropTypes.string.isRequired,
+  onCallbackDelete: PropTypes.func.isRequired,
 };
 
-export default VetItemsList;
+export default VetItemsListSearched;

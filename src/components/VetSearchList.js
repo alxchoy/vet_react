@@ -33,25 +33,25 @@ const styles = StyleSheet.create({
   },
 });
 
-const VetSearchList = ({ navigation }) => {
-  const dataList = navigation.getParam('data', []);
-  const value = navigation.getParam('value', null);
-  const description = navigation.getParam('description', null);
+const VetSearchList = ({ navigation, data, value, description }) => {
+  const dataList = data || navigation.getParam('data', []);
+  const valueProperty = value || navigation.getParam('value', null);
+  const descriptionProperty = description || navigation.getParam('description', null);
 
   return (
     <View>
       <FlatList
         data={dataList}
-        keyExtractor={item => `${item[value]}`}
+        keyExtractor={item => `${item[valueProperty]}`}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
               navigation.state.params.onCallback(item);
-              navigation.goBack(null);
+              navigation.goBack();
             }}
           >
             <View style={styles.row} on>
-              <Text>{item[description]}</Text>
+              <Text>{item[descriptionProperty]}</Text>
             </View>
           </TouchableOpacity>
         )}

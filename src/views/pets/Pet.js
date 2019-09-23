@@ -12,7 +12,6 @@ import VetButton from 'components/VetButton';
 import VetInput from 'components/VetInput';
 import VetSelect from 'components/VetSelect';
 import VetDate from 'components/VetDate';
-import VetItemsList from 'components/VetItemsList';
 import VetAddSearch from 'components/VetAddSearch';
 import { AppContext } from '../../providers/AppContext';
 

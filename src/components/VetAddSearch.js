@@ -6,7 +6,7 @@ import petService from 'services/petService';
 import { AppContext } from '../providers/AppContext';
 
 import VetButton from './VetButton';
-import VetItemsList from './VetItemsList';
+import VetItemsListSearched from './VetItemsListSearched';
 
 import { colors } from '../assets/styles/baseStyle';
 
@@ -18,6 +18,7 @@ const VetAddSearch = ({
   descriptionSearch,
   petId,
   type,
+  onCallbackList,
 }) => {
   const [selectedAlimentations, setSelectedAlimentations] = React.useState([]);
   const [selectedVaccines, setSelectedVaccines] = React.useState([]);
@@ -34,14 +35,6 @@ const VetAddSearch = ({
     setSelectedVaccines(listVaccines);
   }, [petId]);
 
-  const getSymptomsList = React.useCallback(
-    symptom => {
-      const listSymptoms = selectedSymptoms.concat(symptom);
-      setSelectedSymptoms(listSymptoms);
-    },
-    [selectedSymptoms]
-  );
-
   React.useEffect(() => {
     const fetch = async () => {
       appDispatch({ type: 'UPDATE_LOADDING', payload: true });
@@ -54,7 +47,7 @@ const VetAddSearch = ({
     };
 
     fetch();
-  }, [appDispatch, getAlimentationList, getSymptomsList, getVaccinesList, type]);
+  }, [appDispatch, getAlimentationList, getVaccinesList, type]);
 
   const addAlimentationPet = reqService => {
     appDispatch({ type: 'UPDATE_LOADDING', payload: true });
@@ -73,7 +66,9 @@ const VetAddSearch = ({
   };
 
   const addSymptomPet = symptom => {
-    getSymptomsList(symptom);
+    const listSymptoms = selectedSymptoms.concat(symptom);
+    setSelectedSymptoms(listSymptoms);
+    onCallbackList(listSymptoms);
   };
 
   const deleteAlimentationPet = ({ petAlimentationId }) => {
@@ -92,6 +87,11 @@ const VetAddSearch = ({
     });
   };
 
+  const deleteSymptomPet = item => {
+    const listSymptoms = selectedSymptoms.filter(symptom => symptom.symptomId !== item.symptomId);
+    setSelectedSymptoms(listSymptoms);
+  };
+
   const addItem = item => {
     if (type === 'aliments') {
       addAlimentationPet({ alimentationId: item.alimentationId, petId });
@@ -108,7 +108,7 @@ const VetAddSearch = ({
     } else if (type === 'vaccines') {
       deleteVaccinePet(item);
     } else if (type === 'symptoms') {
-      addSymptomPet();
+      deleteSymptomPet(item);
     }
   };
 
@@ -140,14 +140,19 @@ const VetAddSearch = ({
         text={btnText}
         type="blockSecondary"
       />
-      <VetItemsList
+      <VetItemsListSearched
         data={listData()}
         propertyItem={descriptionSearch}
         valueItem={valueSearch}
         onCallbackDelete={item => deleteItem(item)}
+        onCallbackList={() => listData()}
       />
     </View>
   );
+};
+
+VetAddSearch.defaultProps = {
+  onCallbackList: null,
 };
 
 VetAddSearch.propTypes = {
@@ -158,6 +163,7 @@ VetAddSearch.propTypes = {
   descriptionSearch: PropTypes.string.isRequired,
   petId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   type: PropTypes.string.isRequired,
+  onCallbackList: PropTypes.func,
 };
 
 export default VetAddSearch;
