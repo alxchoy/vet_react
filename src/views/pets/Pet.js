@@ -183,7 +183,13 @@ const Pet = ({ navigation }) => {
             <View style={petStyles.petFooter}>
               <VetButton
                 color={pet ? colors.alert : colors.primary}
-                onPress={() => navigation.navigate('Report', { pet })}
+                onPress={() => {
+                  if (pet) {
+                    navigation.navigate('Report', { pet });
+                  } else {
+                    handleSubmit(values);
+                  }
+                }}
                 text={pet ? 'Reportar enfermedad' : 'Agregar mascota'}
                 type="block"
               />
