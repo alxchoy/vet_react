@@ -4,6 +4,8 @@ import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import PetStack from 'views/pets/PetNavigation';
+import ServiceStack from 'views/service/ServiceNavigation';
+
 import ServiceScreen from 'views/service/Services';
 
 import VetSearchList from 'components/VetSearchList';
@@ -13,23 +15,19 @@ import { colors } from '../assets/styles/baseStyle';
 const Navigation = createBottomTabNavigator(
   {
     'Mis mascotas': PetStack,
-    'Mi perfil': ServiceScreen,
-    Servicios: {
-      screen: ServiceScreen,
-      navigationOptions: {
-        title: 'Servicios',
-      },
-    },
-    Suscripción: {
-      screen: () => (
-        <View>
-          <Text>SUBSSSS</Text>
-        </View>
-      ),
-      navigationOptions: {
-        title: 'Suscripción',
-      },
-    },
+    Servicios: ServiceStack,
+    // 'Mi perfil': {
+    //   screen: ServiceScreen,
+    //   navigationOptions: {
+    //     title: 'Mi perfil',
+    //   },
+    // },
+    // Servicios: {
+    //   screen: ServiceScreen,
+    //   navigationOptions: {
+    //     title: 'Servicios',
+    //   },
+    // },
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -44,8 +42,6 @@ const Navigation = createBottomTabNavigator(
           iconName = 'user';
         } else if (routeName === 'Servicios') {
           iconName = 'bath';
-        } else if (routeName === 'Suscripción') {
-          iconName = 'star';
         }
 
         return <Icon name={iconName} color={tintColor} size={25} />;

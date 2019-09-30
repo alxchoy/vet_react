@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const VetSearchList = ({ navigation, data, value, description }) => {
+const VetSearchList = ({ navigation, data, value, description, callback }) => {
   const dataList = data || navigation.getParam('data', []);
   const valueProperty = value || navigation.getParam('value', null);
   const descriptionProperty = description || navigation.getParam('description', null);
@@ -46,7 +46,12 @@ const VetSearchList = ({ navigation, data, value, description }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
-              navigation.state.params.onCallback(item);
+              if (callback !== null) {
+                callback(item);
+              } else {
+                navigation.state.params.onCallback(item);
+              }
+
               navigation.goBack();
             }}
           >
@@ -60,8 +65,19 @@ const VetSearchList = ({ navigation, data, value, description }) => {
   );
 };
 
+VetSearchList.defaultProps = {
+  data: [],
+  value: '',
+  description: '',
+  callback: null,
+};
+
 VetSearchList.propTypes = {
   navigation: PropTypes.instanceOf(Object).isRequired,
+  data: PropTypes.arrayOf(Object),
+  value: PropTypes.string,
+  description: PropTypes.string,
+  callback: PropTypes.func,
 };
 
 VetSearchList.navigationOptions = ({ navigation }) => ({

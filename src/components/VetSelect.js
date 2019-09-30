@@ -44,6 +44,7 @@ const VetSelect = ({
   lookupPropertyValue,
   property,
   touched,
+  value,
 }) => {
   const [data, setData] = useState([]);
 
@@ -77,6 +78,7 @@ const VetSelect = ({
                 }))
               : []
           }
+          value={value}
           Icon={() => <Icon name="sort-down" size={25} color="gray" />}
           onValueChange={change}
           placeholder={{
@@ -100,6 +102,7 @@ const VetSelect = ({
 VetSelect.defaultProps = {
   dependingValue: null,
   icon: null,
+  value: null,
 };
 
 VetSelect.propTypes = {
@@ -112,6 +115,7 @@ VetSelect.propTypes = {
   lookupPropertyValue: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
   touched: PropTypes.instanceOf(Object).isRequired,
+  value: PropTypes.number,
 };
 
 export default VetSelect;

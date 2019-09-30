@@ -57,7 +57,12 @@ const Results = ({ navigation }) => {
         </View>
       </ScrollView>
       <View style={petStyles.petFooter}>
-        <VetButton color={colors.primary} onPress={() => {}} text="Ver mapa" type="block" />
+        <VetButton
+          color={colors.primary}
+          onPress={() => navigation.navigate('Map', { data: items.providers })}
+          text="Ver mapa"
+          type="block"
+        />
       </View>
     </View>
   );

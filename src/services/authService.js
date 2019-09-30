@@ -41,6 +41,8 @@ const login = async (userData, handleResponse) => {
         onPress: () => {},
       },
     ]);
+
+    return false;
   }
 };
 

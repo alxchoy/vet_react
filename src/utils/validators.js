@@ -25,19 +25,21 @@ const RegisterFormValidation = Yup.object().shape({
 });
 
 const PetFormValidation = Yup.object().shape({
-  petBirthDate: Yup.string().required('Campor requerido'),
-  petBreed: Yup.string()
+  petBirthDay: Yup.string().required('Campor requerido'),
+  raceId: Yup.string()
     .nullable()
     .required('Campor requerido'),
-  petHabitat: Yup.string()
+  habitadId: Yup.string()
     .nullable()
     .required('Campor requerido'),
   petName: Yup.string().required('Campor requerido'),
-  petSex: Yup.string()
+  sexId: Yup.string()
     .nullable()
     .required('Campor requerido'),
-  petSize: Yup.string().required('Campor requerido'),
-  petSpecie: Yup.string()
+  petSizeId: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  specieId: Yup.string()
     .nullable()
     .required('Campor requerido'),
   petWeight: Yup.string().required('Campor requerido'),

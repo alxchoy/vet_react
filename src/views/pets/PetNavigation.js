@@ -6,11 +6,6 @@ import PetScreen from './Pet';
 import ReportScreen from './Report';
 import ResultScreen from './Results';
 
-const PetMainStack = createStackNavigator({
-  Bandeja: BandejaScreen,
-  Pet: PetScreen,
-});
-
 const PetStack = createStackNavigator(
   {
     Bandeja: BandejaScreen,

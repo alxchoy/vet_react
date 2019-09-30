@@ -41,20 +41,20 @@ const Pet = ({ navigation }) => {
     <View style={petStyles.petContainer}>
       <Formik
         initialValues={{
-          petName: '',
-          petBirthDate: '',
-          petSpecie: '',
-          petBreed: '',
-          petSex: '',
-          petSize: '',
-          petWeight: '',
-          petHabitat: '',
+          petName: pet ? pet.petName : '',
+          petBirthDay: '',
+          specieId: pet ? pet.specieId : null,
+          raceId: pet ? pet.raceId : null,
+          sexId: pet ? pet.sexId : null,
+          petSizeId: pet ? pet.petSizeId : null,
+          petWeight: pet ? `${pet.petWeight}` : '',
+          habitadId: pet ? pet.habitadId : null,
         }}
         validationSchema={validators.PetFormValidation}
         onSubmit={values => {
           if (pet) {
             navigation.navigate('Report', { pet });
-            return null;
+            return;
           }
 
           appDispatch({ type: 'UPDATE_LOADDING', payload: true });
@@ -84,52 +84,56 @@ const Pet = ({ navigation }) => {
                   value={values.petName}
                 />
                 <VetDate
-                  change={handleChange('petBirthDate')}
+                  change={handleChange('petBirthDay')}
                   icon="calendar"
                   errors={errors}
-                  property="petBirthDate"
+                  property="petBirthDay"
                   touched={touched}
                 />
                 <VetSelect
-                  change={handleChange('petSpecie')}
+                  change={handleChange('specieId')}
                   errors={errors}
                   icon="paw"
                   lookupName="species"
                   lookupPropertyName="specieName"
                   lookupPropertyValue="specieId"
-                  property="petSpecie"
+                  property="specieId"
                   touched={touched}
+                  value={values.specieId}
                 />
                 <VetSelect
-                  change={handleChange('petBreed')}
-                  dependingValue={values.petSpecie}
+                  change={handleChange('raceId')}
+                  dependingValue={values.specieId}
                   errors={errors}
                   icon="paw"
                   lookupName="breed"
                   lookupPropertyName="raceName"
                   lookupPropertyValue="raceId"
-                  property="petBreed"
+                  property="raceId"
                   touched={touched}
+                  value={values.raceId}
                 />
                 <VetSelect
-                  change={handleChange('petSex')}
+                  change={handleChange('sexId')}
                   errors={errors}
                   icon="venus-mars"
                   lookupName="sex"
                   lookupPropertyName="description"
                   lookupPropertyValue="id"
-                  property="petSex"
+                  property="sexId"
                   touched={touched}
+                  value={values.sexId}
                 />
                 <VetSelect
-                  change={handleChange('petSize')}
+                  change={handleChange('petSizeId')}
                   errors={errors}
                   icon="paw"
                   lookupName="size"
                   lookupPropertyName="description"
                   lookupPropertyValue="id"
-                  property="petSize"
+                  property="petSizeId"
                   touched={touched}
+                  value={values.petSizeId}
                 />
                 <VetInput
                   change={handleChange('petWeight')}
@@ -141,14 +145,15 @@ const Pet = ({ navigation }) => {
                   value={values.petWeight}
                 />
                 <VetSelect
-                  change={handleChange('petHabitat')}
+                  change={handleChange('habitadId')}
                   errors={errors}
                   icon="compass"
                   lookupName="habitat"
                   lookupPropertyName="description"
                   lookupPropertyValue="id"
-                  property="petHabitat"
+                  property="habitadId"
                   touched={touched}
+                  value={values.habitadId}
                 />
               </View>
               {pet && (
