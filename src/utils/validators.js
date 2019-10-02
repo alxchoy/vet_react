@@ -45,11 +45,35 @@ const PetFormValidation = Yup.object().shape({
   petWeight: Yup.string().required('Campor requerido'),
 });
 
+const PerfilFormValidation = Yup.object().shape({
+  clientFullName: Yup.string().required('Campor requerido'),
+  clientDocumentNumber: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  clientDocumentTypeId: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  clientEmail: Yup.string()
+    .email('Email inválido')
+    .required('Campo Requerido'),
+  userName: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  userPassword: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  userNewPassword: Yup.string()
+    .nullable()
+    .required('Campor requerido'),
+  userNewPasswordConfirm: Yup.string().required('Campor requerido'),
+});
+
 const validators = {
   LoginFormValidation,
   RecoveryFormValidation,
   RegisterFormValidation,
   PetFormValidation,
+  PerfilFormValidation,
 };
 
 export default validators;
