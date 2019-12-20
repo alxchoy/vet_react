@@ -35,8 +35,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const VetDate = ({ change, icon, errors, touched, property }) => {
+const VetDate = ({ change, icon, errors, touched, property, value }) => {
   const [date, setDate] = React.useState('');
+
+  React.useEffect(() => {
+    if (value) setDate(value);
+  }, [value]);
 
   return (
     <View style={styles.container}>
@@ -74,6 +78,7 @@ const VetDate = ({ change, icon, errors, touched, property }) => {
 
 VetDate.defaultProps = {
   icon: null,
+  value: '',
 };
 
 VetDate.propTypes = {
@@ -82,6 +87,7 @@ VetDate.propTypes = {
   errors: PropTypes.instanceOf(Object).isRequired,
   touched: PropTypes.instanceOf(Object).isRequired,
   property: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 export default VetDate;

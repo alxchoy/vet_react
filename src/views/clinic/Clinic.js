@@ -213,7 +213,7 @@ Clinic.navigationOptions = ({ navigation }) => {
       fontSize: 20,
       color: 'white',
     },
-    title: 'Clínic name',
+    title: 'Clínica',
   };
 };
 

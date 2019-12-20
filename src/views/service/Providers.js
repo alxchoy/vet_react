@@ -12,59 +12,21 @@ import { AppContext } from '../../providers/AppContext';
 
 import { colors } from '../../assets/styles/baseStyle';
 
-// const styles = StyleSheet.create({
-//   titleProviders: {
-//     fontSize: 18,
-//   },
-//   titleProvidersContainer: {
-//     marginHorizontal: 20,
-//     borderBottomColor: colors.gray,
-//     borderBottomWidth: 1,
-//     paddingBottom: 10,
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 20,
+  },
+});
 
 const Providers = ({ navigation }) => {
-  // const [items, setItems] = React.useState([]);
-  // const { appDispatch } = React.useContext(AppContext);
-  // const symptoms = navigation.getParam('symptomsSelected', []);
   const providers = navigation.getParam('providers', null);
 
-  console.log(providers);
-
-  // React.useEffect(() => {
-  //   const fetch = async () => {
-  //     appDispatch({ type: 'UPDATE_LOADDING', payload: true });
-  //     const diagnostics = await petService.getDiagnostic({
-  //       petId,
-  //       symptomIds: symptoms.map(symptom => symptom.symptomId).join(),
-  //     });
-  //     setItems(diagnostics);
-  //     appDispatch({ type: 'UPDATE_LOADDING', payload: false });
-  //   };
-
-  //   fetch();
-  // }, [appDispatch, petId, symptoms]);
-
   return (
-    <Text>
+    <View style={styles.container}>
       <ScrollView>
-        <Text>
-          <Text>
-            <Text>Puede atenderlo</Text>
-          </Text>
-          {/* <VetProvidersList navigation={navigation} data={items.providers} /> */}
-        </Text>
+        <VetProvidersList navigation={navigation} data={providers} />
       </ScrollView>
-      {/* <View style={petStyles.petFooter}>
-        <VetButton
-          color={colors.primary}
-          onPress={() => navigation.navigate('Map', { data: items.providers })}
-          text="Ver mapa"
-          type="block"
-        />
-      </View> */}
-    </Text>
+    </View>
   );
 };
 
@@ -94,7 +56,7 @@ Providers.navigationOptions = ({ navigation }) => {
       fontSize: 20,
       color: 'white',
     },
-    title: 'Posibles enfermedades',
+    title: 'Proveedores',
   };
 };
 

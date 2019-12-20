@@ -55,7 +55,6 @@ const Services = ({ navigation }) => {
     appDispatch({ type: 'UPDATE_LOADDING', payload: true });
     const data = await providerService.getProvidersByService(item.serviceId);
     appDispatch({ type: 'UPDATE_LOADDING', payload: false });
-    console.log(data);
     navigation.navigate('Provider', {
       providers: data,
     });

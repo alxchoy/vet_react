@@ -53,6 +53,7 @@ const VetInput = ({ change, errors, icon, placeholder, property, secureInput, to
 VetInput.defaultProps = {
   icon: null,
   secureInput: false,
+  value: '',
 };
 
 VetInput.propTypes = {
@@ -63,7 +64,7 @@ VetInput.propTypes = {
   property: PropTypes.string.isRequired,
   secureInput: PropTypes.bool,
   touched: PropTypes.instanceOf(Object).isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 export default VetInput;

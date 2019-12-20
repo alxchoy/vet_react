@@ -61,8 +61,42 @@ const createClient = async (userData, handleResponse) => {
   }
 };
 
+const updateClient = async (userData, handleResponse) => {
+  const clientId = await storageService.getData('@vet_clientId');
+  const response = await api.post('api/client/updateDataClient', { ...userData, clientId });
+
+  if (response.status === constants.successCode) {
+    handleResponse(response);
+  } else {
+    Alert.alert('', response.data.error, [
+      {
+        text: 'OK',
+        onPress: () => {},
+      },
+    ]);
+  }
+};
+
+const getClient = async () => {
+  const clientId = await storageService.getData('@vet_clientId');
+  const response = await api.get(`api/client/${clientId}`);
+
+  if (response.status === constants.successCode) {
+    return response.data;
+  }
+
+  Alert.alert('', response.data.error, [
+    {
+      text: 'OK',
+      onPress: () => {},
+    },
+  ]);
+};
+
 export default {
   login,
   getId,
   createClient,
+  updateClient,
+  getClient,
 };

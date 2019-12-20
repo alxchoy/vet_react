@@ -10,7 +10,6 @@ import petStyles from './styles';
 
 const Bandeja = ({ navigation }) => {
   const [pets, setPets] = useState([]);
-  const isReload = navigation.getParam('isReload', false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -19,7 +18,7 @@ const Bandeja = ({ navigation }) => {
     };
 
     fetch();
-  }, [isReload]);
+  });
 
   return (
     <View style={petStyles.petBody}>

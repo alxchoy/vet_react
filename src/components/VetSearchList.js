@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 });
 
 const VetSearchList = ({ navigation, data, value, description, callback }) => {
-  const dataList = data || navigation.getParam('data', []);
+  const dataList = data.length > 0 ? data : navigation.getParam('data', []);
   const valueProperty = value || navigation.getParam('value', null);
   const descriptionProperty = description || navigation.getParam('description', null);
 

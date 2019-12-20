@@ -17,8 +17,6 @@ import RegisterScreen from 'views/auth/Register';
 import ClinicScreen from 'views/clinic/Clinic';
 import MapScreen from 'components/VetMap';
 
-import ProviderScreen from 'views/service/Providers';
-
 import { AppContextProvider } from 'providers/AppContext';
 
 const AppNavigator = createStackNavigator(
@@ -30,7 +28,6 @@ const AppNavigator = createStackNavigator(
     Clinic: ClinicScreen,
     Map: MapScreen,
     Navigation: NavigationScreen,
-    Provider: ProviderScreen,
   },
   {
     initialRouteName: 'Home',

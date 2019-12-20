@@ -12,6 +12,7 @@ const ServiceStack = createStackNavigator(
   },
   {
     mode: 'modal',
+    initialRouteName: 'Service',
   }
 );
 

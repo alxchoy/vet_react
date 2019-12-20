@@ -48,12 +48,14 @@ const Results = ({ navigation }) => {
   return (
     <View style={petStyles.petContainer}>
       <ScrollView>
-        <VetItemsList data={items.diseases} propertyItem="diseaseName" valueItem="diseaseId" />
+        {items.diseases && (
+          <VetItemsList data={items.diseases} propertyItem="diseaseName" valueItem="diseaseId" />
+        )}
         <View>
           <View style={styles.titleProvidersContainer}>
             <Text style={styles.titleProviders}>Puede atenderlo</Text>
           </View>
-          <VetProvidersList navigation={navigation} data={items.providers} />
+          {items.providers && <VetProvidersList navigation={navigation} data={items.providers} />}
         </View>
       </ScrollView>
       <View style={petStyles.petFooter}>

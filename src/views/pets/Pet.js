@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, Text, View } from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -24,6 +24,7 @@ const Pet = ({ navigation }) => {
   const [vaccines, setVaccines] = React.useState([]);
 
   const pet = navigation.getParam('pet', null);
+  console.log(pet);
   const { appDispatch } = React.useContext(AppContext);
 
   React.useEffect(() => {
@@ -42,7 +43,7 @@ const Pet = ({ navigation }) => {
       <Formik
         initialValues={{
           petName: pet ? pet.petName : '',
-          petBirthDay: '',
+          petBirthDay: pet ? pet.petBirthDay : '',
           specieId: pet ? pet.specieId : null,
           raceId: pet ? pet.raceId : null,
           sexId: pet ? pet.sexId : null,
@@ -59,10 +60,15 @@ const Pet = ({ navigation }) => {
 
           appDispatch({ type: 'UPDATE_LOADDING', payload: true });
           petService.createPet(values, () => {
-            appDispatch({ type: 'UPDATE_LOADDING', payload: false });
-            navigation.navigate('Bandeja', {
-              isReload: true,
-            });
+            Alert.alert('', 'La mascota fue registrada correctamente', [
+              {
+                text: 'OK',
+                onPress: () => {
+                  appDispatch({ type: 'UPDATE_LOADDING', payload: false });
+                  navigation.navigate('Bandeja');
+                },
+              },
+            ]);
           });
         }}
       >
@@ -89,6 +95,7 @@ const Pet = ({ navigation }) => {
                   errors={errors}
                   property="petBirthDay"
                   touched={touched}
+                  value={values.petBirthDay}
                 />
                 <VetSelect
                   change={handleChange('specieId')}

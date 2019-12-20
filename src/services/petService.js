@@ -8,8 +8,6 @@ const getPetList = async () => {
   const clientId = await storageService.getData('@vet_clientId');
   const response = await api.get(`api/pet/ByClient/${clientId}`);
 
-  console.log(response);
-
   if (response.status !== constants.successCode) {
     Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
     return null;
@@ -32,8 +30,6 @@ const getBreedList = async specieId => {
 const createPet = async (request, handleResponse) => {
   const clientId = await storageService.getData('@vet_clientId');
   const response = await api.post('api/pet/create', { ...request, clientId });
-
-  console.log(response);
 
   if (response.status !== constants.successCode) {
     Alert.alert('', response.data.error, [{ text: 'OK', onPress: () => {} }]);
